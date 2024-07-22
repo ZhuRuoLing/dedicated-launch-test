@@ -90,9 +90,9 @@ runs:
       run: |
         cd dedicated-launch-test/server
         if [ ! -f arclight.jar ]; then
-          echo "Installing Arclight"
-          wget -q -O arclight.jar https://ci.appveyor.com/api/buildjobs/4u105hxnig986tg0/artifacts/build%2Flibs%2Farclight-forge-1.18.2-1.0.6-SNAPSHOT.jar
-          java -jar arclight.jar nogui > /dev/null 2>&1
+          echo "Installing Vanilla Server + NeoForge"
+          curl -s -O https://maven.neoforged.net/releases/net/neoforged/neoforge/21.0.114-beta/neoforge-21.0.114-beta-installer.jar
+          java -jar neoforge-21.0.114-beta-installer.jar --installServer > /dev/null 2>&1
           echo -n "eula=true" > eula.txt
         fi
         mkdir mods || true
@@ -108,7 +108,7 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
-        java -jar -Djava.awt.headless=true arclight.jar nogui <<< "stop"
+        ./run.sh <<< "stop"
     - name: Check
       shell: bash
       run: |
