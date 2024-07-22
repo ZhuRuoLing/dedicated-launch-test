@@ -89,7 +89,7 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
-        if [ ! -f arclight.jar ]; then
+        if [ ! -f run.sh ]; then
           echo "Installing Vanilla Server + NeoForge"
           curl -s -O https://maven.neoforged.net/releases/net/neoforged/neoforge/21.0.114-beta/neoforge-21.0.114-beta-installer.jar
           java -jar neoforge-21.0.114-beta-installer.jar --installServer > /dev/null 2>&1
