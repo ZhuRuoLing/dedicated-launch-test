@@ -91,8 +91,11 @@ runs:
         cd dedicated-launch-test/server
         if [ ! -f run.sh ]; then
           echo "Installing Vanilla Server + NeoForge"
-          curl -s -O https://maven.neoforged.net/releases/net/neoforged/neoforge/21.0.147/neoforge-21.0.147-installer.jar
-          java -jar neoforge-21.0.147-installer.jar --installServer > /dev/null 2>&1
+          echo "Getting latest NeoForge version..."
+          NF_VER=$(curl -s https://maven.neoforged.net/releases/net/neoforged/neoforge/maven-metadata.xml | yq -p xml '.metadata.versioning.latest')
+          echo Using NeoForge $NF_VER
+          curl -s -o nf-install.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/$NF_VER/neoforge-$NF_VER-installer.jar
+          java -jar nf-install.jar --installServer > /dev/null 2>&1
           echo -n "eula=true" > eula.txt
         fi
         mkdir mods || true
