@@ -96,6 +96,8 @@ runs:
           echo Using NeoForge $NF_VER
           curl -s -o nf-install.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/$NF_VER/neoforge-$NF_VER-installer.jar
           java -jar nf-install.jar --installServer > /dev/null 2>&1
+          echo By using this workflow, you agree with the terms set in Minecraft EULA.
+          echo Get the full EULA text here: https://www.minecraft.net/en-us/eula
           echo -n "eula=true" > eula.txt
         fi
         mkdir mods || true
