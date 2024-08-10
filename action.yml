@@ -91,13 +91,16 @@ runs:
         cd dedicated-launch-test/server
         echo "Getting latest NeoForge version..."
         NF_VER=$(curl -s https://maven.neoforged.net/releases/net/neoforged/neoforge/maven-metadata.xml | yq -p xml '.metadata.versioning.latest')
+        echo "Checking if NeoForge $NF_VER is installed..."
         if ! ls libraries/net/neoforged/neoforge/$NF_VER; then
+          echo "Cannot find NeoForge $NF_VER, installing..."
           rm -f nf-install.jar
-          echo "Installing Vanilla Server + latest NeoForge"
-          echo Using NeoForge $NF_VER
           curl -s -o nf-install.jar https://maven.neoforged.net/releases/net/neoforged/neoforge/$NF_VER/neoforge-$NF_VER-installer.jar
           java -jar nf-install.jar --installServer > /dev/null 2>&1
+        else
+          echo "Found NeoForge $NF_VER"
         fi
+        echo Using NeoForge $NF_VER
         mkdir mods || true
         echo By using this workflow, you agree with the terms set in Minecraft EULA.
         echo Get the full EULA text here: https://www.minecraft.net/en-us/eula
