@@ -20,7 +20,7 @@ runs:
       run: |
         git clone https://github.com/teaconmc/dedicated-launch-test.git
         cd dedicated-launch-test
-        git checkout 1.20.1
+        git checkout 1.21-neoforge
         cd ..
         mkdir -p dedicated-launch-test/extra
         mkdir -p dedicated-launch-test/extra1
