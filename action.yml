@@ -100,6 +100,7 @@ runs:
         else
           echo "Found NeoForge $NF_VER"
         fi
+        NF_VER=21.1.34
         echo Using NeoForge $NF_VER
         mkdir mods || true
         echo By using this workflow, you agree with the terms set in Minecraft EULA.
