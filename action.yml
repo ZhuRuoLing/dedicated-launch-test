@@ -118,7 +118,7 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
-        ./run.sh <<< "stop"
+        ./run.sh nogui <<< "stop"
     - name: Check
       shell: bash
       run: |
