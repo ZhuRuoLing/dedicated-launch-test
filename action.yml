@@ -91,7 +91,7 @@ runs:
         cd dedicated-launch-test/server
         echo "Getting latest NeoForge version..."
         NF_VER=$(curl -s https://maven.neoforged.net/releases/net/neoforged/neoforge/maven-metadata.xml | yq -p xml '.metadata.versioning.latest')
-        NF_VER=21.1.34
+        NF_VER=21.1.54
         echo "Checking if NeoForge $NF_VER is installed..."
         if ! ls libraries/net/neoforged/neoforge/$NF_VER; then
           echo "Cannot find NeoForge $NF_VER, installing..."
