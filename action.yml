@@ -118,6 +118,8 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
+        mkdir config
+        echo 'disableConfigWatcher = true' > config/fml.toml
         echo 'level-name=world' > server.properties
         echo 'level-type=flat' >> server.properties
         echo 'generator-settings={"biome":"minecraft:the_void","features":true,"lakes":0,"layers":[{"block":"minecraft:air","height":1}],"structure_overrides":[]}' >> server.properties
