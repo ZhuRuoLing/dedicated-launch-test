@@ -122,8 +122,8 @@ runs:
         echo 'level-type=flat' >> server.properties
         echo 'generator-settings={"biome":"minecraft:the_void","features":true,"lakes":0,"layers":[{"block":"minecraft:air","height":1}],"structure_overrides":[]}' >> server.properties
         ./run.sh nogui <<< "stop" &
-        for i in $(seq 20); do
-          sleep 15
+        for i in $(seq 100); do
+          sleep 3
           jobs > running.txt
           if [ ! -s running.txt ]; then
             exit 0
