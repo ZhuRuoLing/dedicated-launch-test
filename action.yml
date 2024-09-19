@@ -118,7 +118,7 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
-        mkdir config
+        mkdir -p config
         echo 'disableConfigWatcher = true' > config/fml.toml
         echo 'level-name=world' > server.properties
         echo 'level-type=flat' >> server.properties
