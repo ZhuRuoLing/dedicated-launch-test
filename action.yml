@@ -128,6 +128,7 @@ runs:
           if [ ! -s running.txt ]; then
             exit 0
           fi
+          jstack $(jps | grep BootstrapLauncher | sed -e 's/ BootstrapLauncher//g')
         done
         # Get current running jobs
         jobs > running.txt
