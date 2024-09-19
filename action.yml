@@ -118,7 +118,28 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
-        ./run.sh nogui <<< "stop"
+        echo 'level-name=world' > server.properties
+        echo 'level-type=flat' >> server.properties
+        echo 'generator-settings={"biome":"minecraft:the_void","features":true,"lakes":0,"layers":[{"block":"minecraft:air","height":1}],"structure_overrides":[]}' >> server.properties
+        ./run.sh nogui <<< "stop" &
+        for i in $(seq 20); do
+          sleep 15
+          jobs > running.txt
+          if [ ! -s running.txt ]; then
+            exit 0
+          fi
+        done
+        # Get current running jobs
+        jobs > running.txt
+        # If still have running jobs, we know we are in trouble.
+        # Call jps to get pid, and use jstack to have a trace dump.
+        # Then, kill server and force exit.
+        if [ -s running.txt ]; then
+          jps | grep BootstrapLauncher | sed -e 's/ BootstrapLauncher//g' > dslt.pid
+          jstack $(cat dslt.pid)
+          kill -9 $(cat dslt.pid)
+          exit -1
+        fi
     - name: Check
       shell: bash
       run: |
