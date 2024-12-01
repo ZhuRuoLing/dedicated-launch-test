@@ -120,7 +120,7 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
-        echo "-Dlog4j.configurationFile=../log4j2.xml"
+        echo "-Dlog4j.configurationFile=log4j2.xml" > user_jvm_args.txt
         ./run.sh nogui <<< "stop" &
         for i in $(seq 60); do
           sleep 5
