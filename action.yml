@@ -18,7 +18,7 @@ runs:
     - name: Setup
       shell: bash
       run: |
-        git clone https://github.com/teaconmc/dedicated-launch-test.git
+        git clone https://github.com/ZhuRuoLing/dedicated-launch-test.git
         cd dedicated-launch-test
         git checkout 1.21-neoforge
         cd ..
@@ -120,6 +120,7 @@ runs:
       shell: bash
       run: |
         cd dedicated-launch-test/server
+        echo "-Dlog4j.configurationFile=../log4j2.xml"
         ./run.sh nogui <<< "stop" &
         for i in $(seq 60); do
           sleep 5
